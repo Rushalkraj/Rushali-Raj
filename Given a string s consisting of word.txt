@@ -1,0 +1,26 @@
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+A word is a maximal 
+substring consisting of non-space characters only.
+
+def length_of_last_word(s):
+    # Split the string into a list of words using the default whitespace delimiter
+    words = s.split()
+
+    # Check if the list of words is empty, indicating no words in the string
+    if not words:
+        # If no words, return 0
+        return 0
+
+    # Return the length of the last word in the list of words
+    return len(words[-1])
+
+# Input: Get a string from the user
+s = input("Enter a string: ")
+
+# Call the function and print the result
+print("Length of the last word:", length_of_last_word(s))
+
+
+
+
+

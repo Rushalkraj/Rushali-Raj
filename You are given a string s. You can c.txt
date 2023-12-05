@@ -1,0 +1,26 @@
+You are given a string s. You can convert s to a 
+palindrome by adding characters in front of it.
+Return the shortest palindrome you can find by performing this transformation.
+
+
+def shortestPalindrome(s):
+    # Function to check if a string is a palindrome
+    def is_palindrome(string):
+        return string == string[::-1]
+
+    i = len(s)
+    
+    # Find the longest palindrome substring starting from the beginning
+    while i > 0:
+        if is_palindrome(s[:i]):
+            break
+        i -= 1
+
+    # Add the reversed remaining part to the front to make it a palindrome
+    return s[i:][::-1] + s
+
+# Get input from the user
+s = input("Enter a string: ")
+
+# Print the shortest palindrome
+print(shortestPalindrome(s))

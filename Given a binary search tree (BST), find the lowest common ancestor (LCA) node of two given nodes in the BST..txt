@@ -1,0 +1,57 @@
+
+Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST.
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        # Start with the root of the tree
+        temp = root 
+
+        # Traverse the tree
+        while temp:
+            # If both nodes are greater than the current node, move to the right subtree
+            if p.val > temp.val and q.val > temp.val:
+                temp = temp.right
+            # If both nodes are smaller than the current node, move to the left subtree
+            elif p.val < temp.val and q.val < temp.val:
+                temp = temp.left
+            # If one node is smaller and the other is greater, or nodes are equal, 
+            # then the current node is the lowest common ancestor
+            else:
+                return temp
+
+    @staticmethod
+    def find_lca(root: TreeNode, p_val: int, q_val: int) -> TreeNode:
+        # Create TreeNode instances for the given values
+        p = TreeNode(p_val)
+        q = TreeNode(q_val)
+        
+        # Create a Solution instance
+        solution = Solution()
+        
+        # Call the lowestCommonAncestor method to find the LCA
+        return solution.lowestCommonAncestor(root, p, q)
+
+# Example usage:
+# Construct a BST
+#        5
+#       / \
+#      3   6
+#     / \   \
+#    2   4   7
+
+root = TreeNode(5)
+root.left = TreeNode(3)
+root.right = TreeNode(6)
+root.left.left = TreeNode(2)
+root.left.right = TreeNode(4)
+root.right.right = TreeNode(7)
+
+# Find LCA using the call function
+lca_node = Solution.find_lca(root, 2, 4)
+print("Lowest Common Ancestor:", lca_node.val)
